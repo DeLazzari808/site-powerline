@@ -202,7 +202,7 @@ p {
 /* Hero Section */
 .hero {
     padding: calc(80px + var(--spacing-3xl)) 0 var(--spacing-3xl);
-    background: linear-gradient(135deg, var(--dark-bg) 0%, var(--primary-color) 100%);
+    background: linear-gradient(135deg, #003366 0%, #004080 50%, #0056b3 100%);
     color: var(--white);
 }
 
