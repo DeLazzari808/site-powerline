@@ -5,6 +5,11 @@
 config_local.php
 credentials.php
 
+# Documentação com dados sensíveis (apenas para uso local)
+CONFIGURACAO-SERVIDOR.md
+GUIA-BACKEND-COMPLETO.md
+SEGURANCA-URGENTE.md
+
 # Logs
 *.log
 contact_logs.txt
