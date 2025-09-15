@@ -323,18 +323,29 @@ section {
     padding: var(--spacing-2xl) 0; /* 96px top/bottom */
 }
 
-/* Seções com fundo branco sobre o gradiente */
-section:not(.hero):not(.footer) {
-    background-color: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
+/* Seções com gradiente azul igual ao hero */
+section:not(.footer) {
+    background: linear-gradient(135deg, #003366 0%, #004080 50%, #0056b3 100%);
+    color: var(--white);
     margin: var(--spacing-lg) 0;
     border-radius: var(--border-radius-lg);
-    box-shadow: var(--shadow-md);
+    box-shadow: var(--shadow-lg);
 }
 
-section:not(.hero):not(.footer) .container {
+section:not(.footer) .container {
     margin: 0 auto;
     padding: var(--spacing-lg);
+}
+
+/* Ajustar cores dos textos para contraste no gradiente azul */
+section:not(.footer) h2,
+section:not(.footer) h3,
+section:not(.footer) p {
+    color: var(--white);
+}
+
+section:not(.footer) .section-header p {
+    color: rgba(255, 255, 255, 0.9);
 }
 
 section.hero {
@@ -402,12 +413,12 @@ section.hero {
 .mission-card h3 {
     font-size: var(--font-size-xl);
     font-weight: 600;
-    color: var(--primary-color);
+    color: var(--white);
     margin-bottom: var(--spacing-md);
 }
 
 .mission-card p {
-    color: var(--text-light);
+    color: rgba(255, 255, 255, 0.9);
     line-height: 1.7;
     font-size: var(--font-size-base);
 }
@@ -420,7 +431,7 @@ section.hero {
 .stats-section h3 {
     font-size: var(--font-size-2xl);
     font-weight: 600;
-    color: var(--primary-color);
+    color: var(--white);
     margin-bottom: var(--spacing-2xl);
 }
 
@@ -471,7 +482,9 @@ section.hero {
 }
 
 .service-card {
-    background-color: var(--white);
+    background-color: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     padding: var(--spacing-xl);
     border-radius: var(--border-radius-lg);
     box-shadow: var(--shadow-md);
@@ -492,12 +505,12 @@ section.hero {
 .service-card h3 {
     font-size: var(--font-size-xl);
     font-weight: 600;
-    color: var(--primary-color);
+    color: var(--white);
     margin-bottom: var(--spacing-md);
 }
 
 .service-card p {
-    color: var(--text-light);
+    color: rgba(255, 255, 255, 0.9);
     line-height: 1.6;
 }
 
@@ -851,6 +864,24 @@ section.hero {
     justify-content: space-between;
     align-items: center;
     gap: var(--spacing-lg);
+}
+
+.footer-left {
+    display: flex;
+    align-items: center;
+}
+
+.footer-logo {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+}
+
+.footer-brand {
+    font-size: var(--font-size-lg);
+    font-weight: 700;
+    color: var(--white);
+    font-family: var(--font-heading);
 }
 
 .footer-center {
