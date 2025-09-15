@@ -202,7 +202,7 @@ p {
 /* Hero Section */
 .hero {
     padding: calc(80px + var(--spacing-3xl)) 0 var(--spacing-3xl);
-    background: linear-gradient(135deg, #003366 0%, #004080 50%, #0056b3 100%);
+    background: linear-gradient(135deg, #003366 0%, #000000 50%, #0056b3 100%);
     color: var(--white);
 }
 
@@ -822,87 +822,112 @@ section.hero {
 }
 
 /* Footer */
+/* Footer Moderno - Estilo Beatempo */
 .footer {
-    background-color: var(--primary-color);
+    background-color: #1a1a1a;
     color: var(--white);
-    padding: var(--spacing-3xl) 0 var(--spacing-lg);
+    padding: var(--spacing-lg) 0;
+    border-top: 1px solid #333;
 }
 
 .footer-content {
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr;
-    gap: var(--spacing-3xl);
-    margin-bottom: var(--spacing-xl);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--spacing-lg);
+}
+
+.footer-left {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
 }
 
 .footer-logo {
     display: flex;
     align-items: center;
-    gap: var(--spacing-md);
-    margin-bottom: var(--spacing-md);
+    gap: var(--spacing-xs);
 }
 
-.footer-logo h3 {
+.footer-brand {
     font-size: var(--font-size-lg);
     font-weight: 700;
-    margin-bottom: 0.25rem;
-    letter-spacing: 1px;
+    color: var(--white);
+    font-family: var(--font-heading);
 }
 
-.footer-tagline {
-    font-size: var(--font-size-xs);
-    color: rgba(255, 255, 255, 0.7);
-    font-weight: 600;
-    letter-spacing: 0.5px;
-    text-transform: uppercase;
+.footer-copyright {
+    font-size: var(--font-size-small);
+    color: rgba(255, 255, 255, 0.6);
+    margin: 0;
 }
 
-.footer-info p {
-    color: rgba(255, 255, 255, 0.8);
-    line-height: 1.6;
+.footer-center {
+    flex: 1;
+    display: flex;
+    justify-content: center;
 }
 
-.footer-links h4,
-.footer-contact h4 {
-    font-size: var(--font-size-lg);
-    font-weight: 600;
-    margin-bottom: var(--spacing-md);
+.footer-nav {
+    display: flex;
+    gap: var(--spacing-xl);
 }
 
-.footer-links ul {
-    list-style: none;
-}
-
-.footer-links li {
-    margin-bottom: var(--spacing-xs);
-}
-
-.footer-links a {
+.footer-nav a {
     color: rgba(255, 255, 255, 0.8);
     text-decoration: none;
-    font-family: var(--font-body);
-    font-weight: var(--font-weight-regular);
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-medium);
     transition: color 0.3s ease;
+    position: relative;
 }
 
-.footer-links a:hover {
+.footer-nav a:hover {
     color: var(--accent-color);
 }
 
-.footer-contact p {
+.footer-nav a:hover::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-color: var(--accent-color);
+}
+
+.footer-right {
+    display: flex;
+    align-items: center;
+}
+
+.footer-social {
+    display: flex;
+    gap: var(--spacing-md);
+}
+
+.social-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
     color: rgba(255, 255, 255, 0.8);
-    margin-bottom: var(--spacing-xs);
+    text-decoration: none;
+    transition: all 0.3s ease;
 }
 
-.footer-bottom {
-    text-align: center;
-    padding-top: var(--spacing-lg);
-    border-top: 1px solid rgba(255, 255, 255, 0.2);
+.social-link:hover {
+    background-color: var(--accent-color);
+    color: var(--primary-color);
+    transform: translateY(-2px);
 }
 
-.footer-bottom p {
-    color: rgba(255, 255, 255, 0.6);
-    font-size: var(--font-size-sm);
+.social-link svg {
+    width: 20px;
+    height: 20px;
 }
 
 /* Responsividade */
@@ -978,9 +1003,17 @@ section.hero {
     }
     
     .footer-content {
-        grid-template-columns: 1fr;
-        gap: var(--spacing-xl);
+        flex-direction: column;
+        gap: var(--spacing-lg);
         text-align: center;
+    }
+    
+    .footer-nav {
+        gap: var(--spacing-lg);
+    }
+    
+    .footer-social {
+        justify-content: center;
     }
     
     .section-header h2 {
