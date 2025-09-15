@@ -4,10 +4,10 @@ header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: POST');
 header('Access-Control-Allow-Headers: Content-Type');
 
-// Configurações de email - ALTERAR PARA OS DADOS REAIS
-$to_email = "contato@powerline.com.br"; // EMAIL REAL DA POWERLINE
-$from_email = "noreply@powerline.com.br"; // EMAIL DE ENVIO
-$from_name = "PowerLine - Elétrica Inteligente";
+// Configurações de email - USAR VARIÁVEIS DE AMBIENTE
+$to_email = $_ENV['TO_EMAIL'] ?? "exemplo@powerline.com.br";
+$from_email = $_ENV['FROM_EMAIL'] ?? "noreply@powerline.com.br";
+$from_name = $_ENV['FROM_NAME'] ?? "PowerLine - Elétrica Inteligente";
 
 // Verificar se é uma requisição POST
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {

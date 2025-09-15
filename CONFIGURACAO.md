@@ -25,7 +25,7 @@ define('PHONE_NUMBER', '+55119XXXXXXXX'); // Mesmo número com +
 ## 📱 NÚMEROS DE CONTATO
 
 ### Localizar e Substituir em TODOS os arquivos:
-- `5511999999999` → SEU NÚMERO REAL
+- `557988452633` → NÚMERO JÁ CONFIGURADO
 - `contato@powerline.com.br` → SEU EMAIL REAL
 
 ### Arquivos que contêm números:
@@ -44,8 +44,8 @@ define('PHONE_NUMBER', '+55119XXXXXXXX'); // Mesmo número com +
 
 ### ⚠️ PENDENTE - DADOS REAIS:
 - [ ] Email real no lugar de contato@powerline.com.br
-- [ ] WhatsApp real no lugar de 5511999999999
-- [ ] Telefone real no lugar de +5511999999999
+- [x] WhatsApp real configurado: 557988452633
+- [x] Telefone real configurado: +557988452633
 - [ ] Google Analytics ID real
 - [ ] Configurar SMTP real (Gmail ou provedor)
 

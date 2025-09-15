@@ -67,8 +67,8 @@ define('TO_EMAIL', 'contato@powerline.com.br'); // Email de destino
 define('GA_MEASUREMENT_ID', 'G-XXXXXXXXXX'); // Seu ID do GA
 
 // WhatsApp e Telefone
-define('WHATSAPP_NUMBER', '5511999999999'); // Número real
-define('PHONE_NUMBER', '+5511999999999'); // Telefone real
+define('WHATSAPP_NUMBER', '557988452633'); // Número real
+define('PHONE_NUMBER', '+557988452633'); // Telefone real
 ```
 
 ### 4. Configurar Google Analytics

@@ -1,51 +1,51 @@
 <?php
 /**
  * PowerLine - Configurações do Sistema
- * Arquivo de configuração para hospedagem
+ * CONFIGURAÇÃO SEGURA - SEM CREDENCIAIS HARDCODED
  */
 
-// Configurações de Email - CONFIGURAR COM DADOS REAIS
-define('SMTP_HOST', 'smtp.gmail.com'); // ou smtp do provedor de hospedagem
-define('SMTP_PORT', 587);
-define('SMTP_USERNAME', 'contato@powerline.com.br'); // EMAIL REAL DA POWERLINE
-define('SMTP_PASSWORD', 'APP_PASSWORD_AQUI'); // App Password do Gmail ou senha SMTP
-define('SMTP_SECURE', 'tls'); // 'tls' ou 'ssl'
+// Configurações de Email - USAR VARIÁVEIS DE AMBIENTE
+define('SMTP_HOST', $_ENV['SMTP_HOST'] ?? 'smtp.gmail.com');
+define('SMTP_PORT', $_ENV['SMTP_PORT'] ?? 587);
+define('SMTP_USERNAME', $_ENV['SMTP_USERNAME'] ?? '');
+define('SMTP_PASSWORD', $_ENV['SMTP_PASSWORD'] ?? '');
+define('SMTP_SECURE', $_ENV['SMTP_SECURE'] ?? 'tls');
 
-// Emails de destino
-define('TO_EMAIL', 'contato@powerline.com.br'); // PARA ONDE VÃO OS EMAILS
-define('FROM_EMAIL', 'noreply@powerline.com.br'); // EMAIL DE ENVIO
-define('FROM_NAME', 'PowerLine - Elétrica Inteligente');
+// Emails de destino - USAR VARIÁVEIS DE AMBIENTE
+define('TO_EMAIL', $_ENV['TO_EMAIL'] ?? '');
+define('FROM_EMAIL', $_ENV['FROM_EMAIL'] ?? '');
+define('FROM_NAME', $_ENV['FROM_NAME'] ?? 'PowerLine - Elétrica Inteligente');
 
-// Configurações de Segurança
-define('RECAPTCHA_SITE_KEY', 'sua_recaptcha_site_key'); // Opcional
-define('RECAPTCHA_SECRET_KEY', 'sua_recaptcha_secret_key'); // Opcional
+// Configurações de Segurança - USAR VARIÁVEIS DE AMBIENTE
+define('RECAPTCHA_SITE_KEY', $_ENV['RECAPTCHA_SITE_KEY'] ?? '');
+define('RECAPTCHA_SECRET_KEY', $_ENV['RECAPTCHA_SECRET_KEY'] ?? '');
 
-// Configurações do Google Analytics
-define('GA_MEASUREMENT_ID', 'G-XXXXXXXXXX'); // Substituir pelo ID real
+// Configurações do Google Analytics - USAR VARIÁVEIS DE AMBIENTE
+define('GA_MEASUREMENT_ID', $_ENV['GA_MEASUREMENT_ID'] ?? '');
 
 // Configurações de Rate Limiting
-define('RATE_LIMIT_SECONDS', 30); // Segundos entre envios
-define('MAX_DAILY_EMAILS', 50); // Máximo de emails por IP por dia
+define('RATE_LIMIT_SECONDS', 30);
+define('MAX_DAILY_EMAILS', 50);
 
 // Configurações de Log
 define('ENABLE_LOGGING', true);
 define('LOG_FILE', 'contact_logs.txt');
 
 // Configurações de Desenvolvimento/Produção
-define('ENVIRONMENT', 'development'); // 'development' ou 'production'
+define('ENVIRONMENT', $_ENV['ENVIRONMENT'] ?? 'development');
 define('DEBUG_MODE', ENVIRONMENT === 'development');
 
-// Configurações de Banco de Dados (se necessário no futuro)
-define('DB_HOST', 'localhost');
-define('DB_NAME', 'powerline_db');
-define('DB_USER', 'powerline_user');
-define('DB_PASS', 'powerline_pass');
+// Configurações de Banco de Dados - USAR VARIÁVEIS DE AMBIENTE
+define('DB_HOST', $_ENV['DB_HOST'] ?? '');
+define('DB_NAME', $_ENV['DB_NAME'] ?? '');
+define('DB_USER', $_ENV['DB_USER'] ?? '');
+define('DB_PASS', $_ENV['DB_PASS'] ?? '');
 
-// Configurações de WhatsApp
-define('WHATSAPP_NUMBER', '5511999999999'); // Número real da PowerLine
+// Configurações de WhatsApp - USAR VARIÁVEIS DE AMBIENTE
+define('WHATSAPP_NUMBER', $_ENV['WHATSAPP_NUMBER'] ?? '');
 
-// Configurações de Telefone
-define('PHONE_NUMBER', '+5511999999999'); // Telefone real da PowerLine
+// Configurações de Telefone - USAR VARIÁVEIS DE AMBIENTE
+define('PHONE_NUMBER', $_ENV['PHONE_NUMBER'] ?? '');
 
 // Timezone
 date_default_timezone_set('America/Sao_Paulo');
