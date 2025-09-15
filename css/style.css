@@ -139,8 +139,8 @@ p {
 }
 
 .logo-icon img {
-    width: 65px;
-    height: 65px;
+    width: 90px;
+    height: 90px;
     object-fit: contain;
     filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
     transition: transform 0.3s ease;
@@ -1083,6 +1083,13 @@ section.hero {
     margin-bottom: var(--spacing-3xl);
 }
 
+/* Em telas largas, fixa 2 colunas para formar pares 2x2 */
+@media (min-width: 1024px) {
+    .projects-showcase {
+        grid-template-columns: repeat(2, minmax(320px, 1fr));
+    }
+}
+
 .project-card {
     background: rgba(255, 255, 255, 0.05);
     backdrop-filter: blur(10px);
@@ -1312,6 +1319,13 @@ section.hero {
     gap: var(--spacing-xl);
 }
 
+/* Em telas largas, fixa 2 colunas para parear os cards (2x2) */
+@media (min-width: 1024px) {
+    .differentials-grid {
+        grid-template-columns: repeat(2, minmax(320px, 1fr));
+    }
+}
+
 .differential-card {
     background: rgba(255, 255, 255, 0.05);
     backdrop-filter: blur(10px);
@@ -1412,25 +1426,26 @@ section.hero {
     backdrop-filter: blur(10px);
     border-radius: var(--border-radius-lg);
     border: 1px solid rgba(255, 255, 255, 0.1);
-    padding: var(--spacing-xl);
+    padding: var(--spacing-lg);
+    margin-top: 6px;
 }
 
 .contact-form h3 {
     font-size: var(--font-size-h3);
     font-weight: var(--font-weight-semibold);
     color: var(--white);
-    margin-bottom: var(--spacing-xl);
+    margin-bottom: var(--spacing-lg);
     text-align: center;
 }
 
 .form-row {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: var(--spacing-md);
+    gap: var(--spacing-sm);
 }
 
 .form-group {
-    margin-bottom: var(--spacing-lg);
+    margin-bottom: var(--spacing-md);
 }
 
 .form-group label {
@@ -1445,7 +1460,7 @@ section.hero {
 .form-group select,
 .form-group textarea {
     width: 100%;
-    padding: var(--spacing-sm);
+    padding: 0.75rem;
     border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: var(--border-radius);
     background: rgba(255, 255, 255, 0.1);
@@ -1469,7 +1484,7 @@ section.hero {
 
 .btn-full {
     width: 100%;
-    margin-top: var(--spacing-md);
+    margin-top: var(--spacing-sm);
 }
 
 .btn-whatsapp {
@@ -1519,7 +1534,9 @@ section.hero {
 }
 
 .footer-logo img {
-    filter: brightness(0) invert(1);
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
 }
 
 .footer-brand {
@@ -1720,8 +1737,8 @@ section.hero {
     }
     
     .logo-icon img {
-        width: 40px;
-        height: 40px;
+        width: 60px;
+        height: 60px;
     }
     
     .hero-main-image {
