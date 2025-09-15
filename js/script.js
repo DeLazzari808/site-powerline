@@ -96,35 +96,56 @@ document.addEventListener('DOMContentLoaded', function() {
                 return;
             }
             
-            // Simular envio (aqui você integraria com um backend real)
+            // Integração real com backend PHP
             const submitButton = this.querySelector('button[type="submit"]');
             const originalText = submitButton.textContent;
             
             submitButton.textContent = 'Enviando...';
             submitButton.disabled = true;
             
-            // Simular delay de envio
-            setTimeout(() => {
-                alert('Obrigado! Sua solicitação foi enviada com sucesso. Entraremos em contato em breve.');
-                this.reset();
-                
+            // Enviar dados para o backend
+            fetch('contact.php', {
+                method: 'POST',
+                headers: { 
+                    'Content-Type': 'application/json',
+                    'X-Requested-With': 'XMLHttpRequest'
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(result => {
+                if (result.success) {
+                    // Sucesso
+                    alert('✅ ' + result.message);
+                    this.reset();
+                    
+                    // Google Analytics Event (se configurado)
+                    if (typeof gtag !== 'undefined') {
+                        gtag('event', 'form_submit', {
+                            event_category: 'Contact',
+                            event_label: 'Contact Form',
+                            value: 1
+                        });
+                    }
+                } else {
+                    // Erro do servidor
+                    alert('❌ ' + result.message);
+                }
+            })
+            .catch(error => {
+                console.error('Erro:', error);
+                alert('❌ Erro ao enviar solicitação. Tente novamente ou entre em contato pelo WhatsApp.');
+            })
+            .finally(() => {
+                // Restaurar botão
                 submitButton.textContent = originalText;
                 submitButton.disabled = false;
-            }, 2000);
-            
-            // Em um ambiente real, você faria algo como:
-            // fetch('/api/contact', {
-            //     method: 'POST',
-            //     headers: { 'Content-Type': 'application/json' },
-            //     body: JSON.stringify(data)
-            // }).then(response => response.json())
-            //   .then(result => {
-            //       alert('Mensagem enviada com sucesso!');
-            //       this.reset();
-            //   })
-            //   .catch(error => {
-            //       alert('Erro ao enviar mensagem. Tente novamente.');
-            //   });
+            });
         });
     }
     
@@ -166,8 +187,8 @@ document.addEventListener('DOMContentLoaded', function() {
         updateCounter();
     }
     
-    // Aplicar animação aos contadores quando visíveis
-    const statNumbers = document.querySelectorAll('.stat .number');
+    // Aplicar animação aos contadores quando visíveis (nova versão)
+    const statNumbers = document.querySelectorAll('.stat-number');
     const statsObserver = new IntersectionObserver(function(entries) {
         entries.forEach(entry => {
             if (entry.isIntersecting && !entry.target.classList.contains('animated')) {
@@ -185,6 +206,57 @@ document.addEventListener('DOMContentLoaded', function() {
     statNumbers.forEach(stat => {
         statsObserver.observe(stat);
     });
+    
+    // Carrossel de Projetos
+    let currentSlideIndex = 0;
+    const slides = document.querySelectorAll('.project-slide');
+    const dots = document.querySelectorAll('.dot');
+    
+    window.moveSlide = function(direction) {
+        currentSlideIndex += direction;
+        
+        if (currentSlideIndex >= slides.length) {
+            currentSlideIndex = 0;
+        } else if (currentSlideIndex < 0) {
+            currentSlideIndex = slides.length - 1;
+        }
+        
+        showSlide(currentSlideIndex);
+    };
+    
+    window.currentSlide = function(index) {
+        currentSlideIndex = index - 1;
+        showSlide(currentSlideIndex);
+    };
+    
+    function showSlide(index) {
+        // Ocultar todos os slides
+        slides.forEach(slide => {
+            slide.classList.remove('active');
+        });
+        
+        // Remover active de todos os dots
+        dots.forEach(dot => {
+            dot.classList.remove('active');
+        });
+        
+        // Mostrar slide atual
+        if (slides[index]) {
+            slides[index].classList.add('active');
+        }
+        
+        // Ativar dot correspondente
+        if (dots[index]) {
+            dots[index].classList.add('active');
+        }
+    }
+    
+    // Auto-play do carrossel (opcional)
+    setInterval(() => {
+        if (slides.length > 1) {
+            moveSlide(1);
+        }
+    }, 5000); // Troca a cada 5 segundos
     
     // Header transparente/sólido baseado no scroll
     const header = document.querySelector('.header');

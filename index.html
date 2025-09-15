@@ -6,7 +6,69 @@
     <title>PowerLine - Soluções em Energia Elétrica</title>
     <meta name="description" content="PowerLine oferece soluções completas em energia elétrica, instalações industriais e manutenção especializada.">
     <link rel="stylesheet" href="css/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        
+        // Substituir GA_MEASUREMENT_ID pelo ID real do Google Analytics
+        gtag('config', 'GA_MEASUREMENT_ID', {
+            page_title: 'PowerLine - Elétrica Inteligente',
+            page_location: window.location.href
+        });
+        
+        // Event tracking para botões importantes
+        document.addEventListener('DOMContentLoaded', function() {
+            // WhatsApp clicks
+            document.querySelectorAll('a[href*="wa.me"]').forEach(link => {
+                link.addEventListener('click', function() {
+                    gtag('event', 'whatsapp_click', {
+                        event_category: 'Contact',
+                        event_label: this.textContent.trim(),
+                        value: 1
+                    });
+                });
+            });
+            
+            // Phone clicks
+            document.querySelectorAll('a[href^="tel:"]').forEach(link => {
+                link.addEventListener('click', function() {
+                    gtag('event', 'phone_click', {
+                        event_category: 'Contact',
+                        event_label: this.getAttribute('href'),
+                        value: 1
+                    });
+                });
+            });
+            
+            // Service card clicks
+            document.querySelectorAll('.service-card').forEach(card => {
+                card.addEventListener('click', function() {
+                    const serviceName = this.querySelector('h3').textContent;
+                    gtag('event', 'service_interest', {
+                        event_category: 'Services',
+                        event_label: serviceName,
+                        value: 1
+                    });
+                });
+            });
+            
+            // Emergency section interactions
+            document.querySelector('.emergency-section')?.addEventListener('click', function(e) {
+                if (e.target.closest('.btn')) {
+                    gtag('event', 'emergency_contact', {
+                        event_category: 'Emergency',
+                        event_label: e.target.textContent.trim(),
+                        value: 1
+                    });
+                }
+            });
+        });
+    </script>
 </head>
 <body>
     <!-- Header / Navegação -->
@@ -14,10 +76,7 @@
         <div class="container">
             <div class="logo">
                 <div class="logo-icon">
-                    <svg width="40" height="40" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="50" cy="50" r="45" fill="none" stroke="#FFA726" stroke-width="8"/>
-                        <path d="M35 30 L65 50 L45 50 L65 70 L35 50 L55 50 Z" fill="#FFA726"/>
-                    </svg>
+                    <img src="images/powerline-logo.png" alt="PowerLine Logo" width="45" height="45">
                 </div>
                 <div class="logo-text">
                     <h1>POWERLINE</h1>
@@ -51,11 +110,9 @@
                     <a href="#contato" class="btn btn-secondary">Solicitar Orçamento</a>
                 </div>
             </div>
-            <div class="hero-image">
-                <div class="placeholder-image">
-                    <span>Imagem da PowerLine</span>
+                <div class="hero-image">
+                    <img src="images/powerline-header.png" alt="PowerLine - Serviços Elétricos" class="hero-main-image">
                 </div>
-            </div>
         </div>
     </section>
 
@@ -66,67 +123,91 @@
                 <h2>Sobre a PowerLine</h2>
                 <p>Comprometidos com a excelência em soluções elétricas</p>
             </div>
-            <div class="about-content">
-                <div class="about-text">
+            
+            <div class="about-mission">
+                <div class="mission-card">
+                    <div class="mission-icon">💡</div>
                     <h3>Nossa Missão</h3>
-                    <p>💡 Resolver seus problemas elétricos com preço justo e atendimento de qualidade. Trazemos segurança, agilidade e confiança para o seu dia a dia.</p>
-                    
-                    <h3>Quem Somos</h3>
-                    <p>🔧 Somos especialistas em soluções elétricas inteligentes para residências e comércios. Nosso foco está em instalações, reparos e diagnósticos rápidos, porque energia não pode falhar e você merece o melhor!</p>
-                    
-                    <div class="stats">
-                        <div class="stat">
-                            <span class="number">100+</span>
-                            <span class="label">Serviços Realizados</span>
-                        </div>
-                        <div class="stat">
-                            <span class="number">50+</span>
-                            <span class="label">Clientes Atendidos</span>
-                        </div>
-                        <div class="stat">
-                            <span class="number">24h</span>
-                            <span class="label">Emergências</span>
-                        </div>
-                        <div class="stat">
-                            <span class="number">100%</span>
-                            <span class="label">Garantia</span>
-                        </div>
-                    </div>
+                    <p>Resolver seus problemas elétricos com preço justo e atendimento de qualidade. Trazemos segurança, agilidade e confiança para o seu dia a dia.</p>
                 </div>
-                <div class="about-image">
-                    <div class="placeholder-image">
-                        <span>Equipe PowerLine</span>
+                
+                <div class="mission-card">
+                    <div class="mission-icon">🔧</div>
+                    <h3>Quem Somos</h3>
+                    <p>Especialistas em soluções elétricas inteligentes para residências e comércios. Nosso foco está em instalações, reparos e diagnósticos rápidos, porque energia não pode falhar e você merece o melhor!</p>
+                </div>
+            </div>
+            
+            <div class="stats-section">
+                <h3>Nossos Números</h3>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-number">100+</div>
+                        <div class="stat-label">Serviços Realizados</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">50+</div>
+                        <div class="stat-label">Clientes Atendidos</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">24h</div>
+                        <div class="stat-label">Emergências</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">100%</div>
+                        <div class="stat-label">Garantia</div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Seção Emergência 24h -->
-    <section class="emergency-section">
+    <!-- Seção Projetos Realizados -->
+    <section class="projects-section">
         <div class="container">
-            <div class="emergency-content">
-                <div class="emergency-text">
-                    <h2>🚨 Atendimento de Emergência 24 Horas</h2>
-                    <p>Problemas elétricos não esperam! Nossa equipe especializada está disponível 24/7 para resolver qualquer emergência elétrica.</p>
-                    <ul class="emergency-list">
-                        <li>✅ Pane elétrica e curto-circuito</li>
-                        <li>✅ Falta de energia em setores críticos</li>
-                        <li>✅ Problemas em disjuntores e quadros</li>
-                        <li>✅ Emergências industriais</li>
-                    </ul>
-                    <div class="emergency-buttons">
-                        <a href="https://wa.me/5511999999999?text=Olá! Preciso de atendimento emergencial da PowerLine" class="btn btn-emergency" target="_blank">
-                            📱 WhatsApp Emergência
-                        </a>
-                        <a href="tel:+5511999999999" class="btn btn-call">📞 Ligar Agora</a>
+            <div class="section-header">
+                <h2>Projetos Realizados</h2>
+                <p>Confira alguns dos nossos trabalhos e a qualidade que entregamos</p>
+            </div>
+            <div class="projects-carousel-container">
+                <div class="projects-carousel" id="projectsCarousel">
+                    <!-- Placeholder para fotos que chegam amanhã -->
+                    <div class="project-slide active">
+                        <div class="project-placeholder">
+                            <div class="placeholder-content">
+                                <span class="placeholder-icon">📸</span>
+                                <h3>Instalação Residencial</h3>
+                                <p>Projeto completo de instalação elétrica</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-slide">
+                        <div class="project-placeholder">
+                            <div class="placeholder-content">
+                                <span class="placeholder-icon">🏢</span>
+                                <h3>Projeto Comercial</h3>
+                                <p>Instalação elétrica para estabelecimento comercial</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-slide">
+                        <div class="project-placeholder">
+                            <div class="placeholder-content">
+                                <span class="placeholder-icon">🔧</span>
+                                <h3>Manutenção Preventiva</h3>
+                                <p>Serviço de manutenção em quadro elétrico</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="emergency-image">
-                    <div class="emergency-badge">
-                        <span class="badge-text">24/7</span>
-                        <span class="badge-subtext">DISPONÍVEL</span>
-                    </div>
+                <div class="carousel-controls">
+                    <button class="carousel-btn prev" onclick="moveSlide(-1)">❮</button>
+                    <button class="carousel-btn next" onclick="moveSlide(1)">❯</button>
+                </div>
+                <div class="carousel-dots">
+                    <span class="dot active" onclick="currentSlide(1)"></span>
+                    <span class="dot" onclick="currentSlide(2)"></span>
+                    <span class="dot" onclick="currentSlide(3)"></span>
                 </div>
             </div>
         </div>
@@ -268,32 +349,32 @@
             <div class="contact-content">
                 <div class="contact-info">
                     <h3>Informações de Contato</h3>
-                    <div class="contact-item">
-                        <span class="icon">📞</span>
-                        <div>
-                            <strong>Telefone</strong>
-                            <p>(11) 9999-9999</p>
+                        <div class="contact-item">
+                            <span class="icon">📞</span>
+                            <div>
+                                <strong>Telefone</strong>
+                                <p>(79) 8845-2633</p>
+                            </div>
                         </div>
-                    </div>
                     <div class="contact-item">
                         <span class="icon">📧</span>
                         <div>
                             <strong>Email</strong>
-                            <p>contato@powerline.com.br</p>
+                            <p>contato.powerline.servicos@gmail.com</p>
                         </div>
                     </div>
                     <div class="contact-item">
                         <span class="icon">📍</span>
                         <div>
                             <strong>Endereço</strong>
-                            <p>São Paulo, SP - Brasil</p>
+                            <p>Curitiba, PR - Brasil</p>
                         </div>
                     </div>
                     <div class="contact-item">
                         <span class="icon">🕒</span>
                         <div>
                             <strong>Horário de Atendimento</strong>
-                            <p>Segunda a Sexta: 8h às 18h<br>Emergências: 24h</p>
+                            <p>Segunda a Sexta: 8h às 18h</p>
                         </div>
                     </div>
                 </div>
@@ -334,7 +415,7 @@
                         </div>
                         <div class="form-buttons">
                             <button type="submit" class="btn btn-primary">Enviar Solicitação</button>
-                            <a href="https://wa.me/5511999999999?text=Olá! Gostaria de solicitar um orçamento da PowerLine" class="btn btn-whatsapp" target="_blank">
+                            <a href="https://wa.me/557988452633?text=Olá! Gostaria de solicitar um orçamento da PowerLine" class="btn btn-whatsapp" target="_blank">
                                 📱 WhatsApp Direto
                             </a>
                         </div>
@@ -351,10 +432,7 @@
                 <div class="footer-info">
                     <div class="footer-logo">
                         <div class="logo-icon">
-                            <svg width="32" height="32" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                                <circle cx="50" cy="50" r="45" fill="none" stroke="#FFA726" stroke-width="8"/>
-                                <path d="M35 30 L65 50 L45 50 L65 70 L35 50 L55 50 Z" fill="#FFA726"/>
-                            </svg>
+                            <img src="images/powerline-logo.png" alt="PowerLine Logo" width="32" height="32">
                         </div>
                         <div>
                             <h3>POWERLINE</h3>
@@ -374,12 +452,13 @@
                 </div>
                 <div class="footer-contact">
                     <h4>Contato</h4>
-                    <p>📞 (11) 9999-9999</p>
-                    <p>📧 contato@powerline.com.br</p>
+                    <p>📞 (55) 7988452633</p>
+                    <p>📧 contato.powerline.servicos@gmail.com
+                    </p>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2024 PowerLine. Todos os direitos reservados.</p>
+                <p>&copy; 2025 PowerLine. Todos os direitos reservados.</p>
             </div>
         </div>
     </footer>
