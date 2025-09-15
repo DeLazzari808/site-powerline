@@ -71,7 +71,9 @@ body {
     font-weight: var(--font-weight-regular);
     line-height: 1.6;
     color: var(--text-dark);
-    background-color: var(--white);
+    background: linear-gradient(135deg, #003366 0%, #004080 50%, #0056b3 100%);
+    background-attachment: fixed;
+    min-height: 100vh;
 }
 
 /* Tipografia - Títulos */
@@ -319,6 +321,20 @@ p {
 /* Seções gerais - Sistema de Espaçamento */
 section {
     padding: var(--spacing-2xl) 0; /* 96px top/bottom */
+}
+
+/* Seções com fundo branco sobre o gradiente */
+section:not(.hero):not(.footer) {
+    background-color: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    margin: var(--spacing-lg) 0;
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-md);
+}
+
+section:not(.hero):not(.footer) .container {
+    margin: 0 auto;
+    padding: var(--spacing-lg);
 }
 
 section.hero {
@@ -837,68 +853,17 @@ section.hero {
     gap: var(--spacing-lg);
 }
 
-.footer-left {
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-xs);
-}
-
-.footer-logo {
-    display: flex;
-    align-items: center;
-    gap: var(--spacing-xs);
-}
-
-.footer-brand {
-    font-size: var(--font-size-lg);
-    font-weight: 700;
-    color: var(--white);
-    font-family: var(--font-heading);
-}
-
-.footer-copyright {
-    font-size: var(--font-size-small);
-    color: rgba(255, 255, 255, 0.6);
-    margin: 0;
-}
-
 .footer-center {
     flex: 1;
     display: flex;
     justify-content: center;
 }
 
-.footer-nav {
-    display: flex;
-    gap: var(--spacing-xl);
-}
-
-.footer-nav a {
-    color: rgba(255, 255, 255, 0.8);
-    text-decoration: none;
+.footer-copyright {
     font-size: var(--font-size-base);
-    font-weight: var(--font-weight-medium);
-    transition: color 0.3s ease;
-    position: relative;
-}
-
-.footer-nav a:hover {
-    color: var(--accent-color);
-}
-
-.footer-nav a:hover::after {
-    content: '';
-    position: absolute;
-    bottom: -4px;
-    left: 0;
-    right: 0;
-    height: 2px;
-    background-color: var(--accent-color);
-}
-
-.footer-right {
-    display: flex;
-    align-items: center;
+    color: rgba(255, 255, 255, 0.8);
+    margin: 0;
+    text-align: center;
 }
 
 .footer-social {
@@ -1004,16 +969,13 @@ section.hero {
     
     .footer-content {
         flex-direction: column;
-        gap: var(--spacing-lg);
+        gap: var(--spacing-md);
         text-align: center;
-    }
-    
-    .footer-nav {
-        gap: var(--spacing-lg);
     }
     
     .footer-social {
         justify-content: center;
+        order: -1;
     }
     
     .section-header h2 {
