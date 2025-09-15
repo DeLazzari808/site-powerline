@@ -31,12 +31,12 @@ cp env.example .env
 # Configurações de Email SMTP
 SMTP_HOST=smtp.gmail.com
 SMTP_PORT=587
-SMTP_USERNAME=seu_email@gmail.com
-SMTP_PASSWORD=sua_senha_app_gmail
+SMTP_USERNAME=seu_email_real@gmail.com
+SMTP_PASSWORD=sua_senha_app_gmail_real
 SMTP_SECURE=tls
 
 # Emails de destino
-TO_EMAIL=seu_email@gmail.com
+TO_EMAIL=contato.powerline.servicos@gmail.com
 FROM_EMAIL=noreply@powerline.com.br
 FROM_NAME=PowerLine - Elétrica Inteligente
 
