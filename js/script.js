@@ -258,15 +258,30 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }, 5000); // Troca a cada 5 segundos
     
-    // Header transparente/sólido baseado no scroll
+    // Header que some no scroll
     const header = document.querySelector('.header');
+    let lastScrollY = window.scrollY;
     
     function updateHeaderOnScroll() {
-        if (window.scrollY > 50) {
+        const currentScrollY = window.scrollY;
+        
+        // Header transparente/sólido baseado no scroll
+        if (currentScrollY > 50) {
             header.classList.add('scrolled');
         } else {
             header.classList.remove('scrolled');
         }
+        
+        // Header que some/aparece baseado na direção do scroll
+        if (currentScrollY > lastScrollY && currentScrollY > 100) {
+            // Scrolling down - hide header
+            header.classList.add('hidden');
+        } else {
+            // Scrolling up - show header
+            header.classList.remove('hidden');
+        }
+        
+        lastScrollY = currentScrollY;
     }
     
     window.addEventListener('scroll', updateHeaderOnScroll);
@@ -297,3 +312,63 @@ document.addEventListener('DOMContentLoaded', function() {
     
     console.log('PowerLine - Site carregado com sucesso! ⚡');
 });
+
+// Carrossel de Depoimentos
+let currentTestimonialIndex = 0;
+const testimonialSlides = document.querySelectorAll('.testimonial-slide');
+const indicators = document.querySelectorAll('.indicator');
+
+function showTestimonial(index) {
+    // Ocultar todos os slides
+    testimonialSlides.forEach(slide => {
+        slide.classList.remove('active');
+    });
+    
+    // Remover active de todos os indicators
+    indicators.forEach(indicator => {
+        indicator.classList.remove('active');
+    });
+    
+    // Mostrar slide atual
+    if (testimonialSlides[index]) {
+        testimonialSlides[index].classList.add('active');
+    }
+    
+    // Ativar indicator correspondente
+    if (indicators[index]) {
+        indicators[index].classList.add('active');
+    }
+}
+
+function nextTestimonial() {
+    currentTestimonialIndex++;
+    if (currentTestimonialIndex >= testimonialSlides.length) {
+        currentTestimonialIndex = 0;
+    }
+    showTestimonial(currentTestimonialIndex);
+}
+
+function prevTestimonial() {
+    currentTestimonialIndex--;
+    if (currentTestimonialIndex < 0) {
+        currentTestimonialIndex = testimonialSlides.length - 1;
+    }
+    showTestimonial(currentTestimonialIndex);
+}
+
+function currentTestimonial(index) {
+    currentTestimonialIndex = index - 1;
+    showTestimonial(currentTestimonialIndex);
+}
+
+// Auto-play do carrossel de depoimentos
+setInterval(() => {
+    if (testimonialSlides.length > 1) {
+        nextTestimonial();
+    }
+}, 6000); // Troca a cada 6 segundos
+
+// Expor funções globalmente para os botões HTML
+window.nextTestimonial = nextTestimonial;
+window.prevTestimonial = prevTestimonial;
+window.currentTestimonial = currentTestimonial;

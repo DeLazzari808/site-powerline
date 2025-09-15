@@ -1749,6 +1749,114 @@ html {
     transition: all 0.3s ease;
 }
 
+/* Carrossel de Depoimentos */
+.testimonials-carousel {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.testimonials-container {
+    position: relative;
+    width: 100%;
+}
+
+.testimonial-slide {
+    display: none;
+    width: 100%;
+    text-align: center;
+}
+
+.testimonial-slide.active {
+    display: block;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.testimonials-carousel .testimonial-card {
+    max-width: none;
+    margin: 0 auto;
+}
+
+.carousel-controls {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin: 2rem 0 1rem;
+}
+
+.carousel-btn {
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.carousel-btn:hover {
+    background: var(--primary-dark);
+    transform: scale(1.1);
+}
+
+.carousel-indicators {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.indicator {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #ddd;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.indicator.active {
+    background: var(--primary-color);
+    transform: scale(1.2);
+}
+
+.indicator:hover {
+    background: var(--primary-light);
+}
+
+/* Header que some no scroll */
+.header {
+    transition: transform 0.3s ease-in-out;
+}
+
+.header.hidden {
+    transform: translateY(-100%);
+}
+
+/* Responsividade do carrossel */
+@media (max-width: 768px) {
+    .carousel-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+    }
+    
+    .testimonials-carousel {
+        padding: 0 1rem;
+    }
+}
+
 /* Acessibilidade */
 @media (prefers-reduced-motion: reduce) {
     * {
@@ -1759,5 +1867,9 @@ html {
     
     html {
         scroll-behavior: auto;
+    }
+    
+    .testimonial-slide.active {
+        animation: none;
     }
 }
