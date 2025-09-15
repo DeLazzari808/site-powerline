@@ -923,7 +923,7 @@ section.hero {
 
 .section-badge {
     display: inline-block;
-    margin-bottom: var(--spacing-md);
+    margin-bottom: var(--spacing-lg);
 }
 
 .section-badge span {
