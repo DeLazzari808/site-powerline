@@ -258,12 +258,24 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }, 5000); // Troca a cada 5 segundos
     
-    // Header que some no scroll
+    // Header com movimento fluido que acompanha a velocidade do scroll
     const header = document.querySelector('.header');
     let lastScrollY = window.scrollY;
+    let lastScrollTime = Date.now();
+    let scrollVelocity = 0;
+    let headerOffset = 0;
+    let ticking = false;
     
     function updateHeaderOnScroll() {
         const currentScrollY = window.scrollY;
+        const currentTime = Date.now();
+        const timeDelta = currentTime - lastScrollTime;
+        const scrollDelta = currentScrollY - lastScrollY;
+        
+        // Calcular velocidade do scroll
+        if (timeDelta > 0) {
+            scrollVelocity = scrollDelta / timeDelta; // pixels por milissegundo
+        }
         
         // Header transparente/sólido baseado no scroll
         if (currentScrollY > 50) {
@@ -272,19 +284,46 @@ document.addEventListener('DOMContentLoaded', function() {
             header.classList.remove('scrolled');
         }
         
-        // Header que some/aparece baseado na direção do scroll
-        if (currentScrollY > lastScrollY && currentScrollY > 100) {
-            // Scrolling down - hide header
-            header.classList.add('hidden');
+        // Lógica do header baseada na velocidade e direção do scroll
+        if (currentScrollY > 100) {
+            if (scrollDelta > 0) {
+                // Scrolling down - header "solto" que acompanha a velocidade
+                const maxOffset = header.offsetHeight;
+                const velocityFactor = Math.min(Math.abs(scrollVelocity) * 1000, 1); // Normalizar velocidade
+                headerOffset = Math.min(headerOffset + (scrollDelta * velocityFactor * 0.8), maxOffset);
+                
+                // Aplicar transform baseado no offset
+                header.style.transform = `translateY(-${headerOffset}px)`;
+                header.classList.remove('hidden');
+            } else if (scrollDelta < 0) {
+                // Scrolling up - header volta na mesma velocidade
+                const velocityFactor = Math.min(Math.abs(scrollVelocity) * 1000, 1);
+                headerOffset = Math.max(headerOffset - (Math.abs(scrollDelta) * velocityFactor * 1.2), 0);
+                
+                // Aplicar transform baseado no offset
+                header.style.transform = `translateY(-${headerOffset}px)`;
+                header.classList.remove('hidden');
+            }
         } else {
-            // Scrolling up - show header
+            // No topo da página - header sempre visível
+            headerOffset = 0;
+            header.style.transform = 'translateY(0)';
             header.classList.remove('hidden');
         }
         
         lastScrollY = currentScrollY;
+        lastScrollTime = currentTime;
+        ticking = false;
     }
     
-    window.addEventListener('scroll', updateHeaderOnScroll);
+    function requestTick() {
+        if (!ticking) {
+            requestAnimationFrame(updateHeaderOnScroll);
+            ticking = true;
+        }
+    }
+    
+    window.addEventListener('scroll', requestTick, { passive: true });
     
     // Fechar menu mobile ao clicar fora
     document.addEventListener('click', function(e) {
