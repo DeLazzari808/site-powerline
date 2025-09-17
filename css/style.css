@@ -912,17 +912,21 @@ section.hero {
 
 /* Seção Sobre - Clean e Profissional */
 .about-section {
-    padding: var(--spacing-3xl) 0;
+    padding: var(--spacing-2xl) 0;
     background: linear-gradient(135deg, #003366 0%, #000000 50%, #0056b3 100%);
     color: var(--white);
     position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
 }
 
 .about-content {
     display: grid;
-    grid-template-columns: 1.5fr 1fr;
-    gap: var(--spacing-3xl);
+    grid-template-columns: 1.2fr 1fr;
+    gap: var(--spacing-xl);
     align-items: center;
+    width: 100%;
 }
 
 .section-badge {
@@ -943,25 +947,25 @@ section.hero {
 }
 
 .about-text h2 {
-    font-size: var(--font-size-h1);
+    font-size: clamp(2rem, 4vw, 3.5rem);
     font-weight: 800;
-    margin-bottom: var(--spacing-lg);
+    margin-bottom: var(--spacing-md);
     line-height: 1.2;
     color: var(--white);
 }
 
 .about-lead {
-    font-size: var(--font-size-xl);
+    font-size: var(--font-size-lg);
     color: rgba(255, 255, 255, 0.9);
     line-height: 1.6;
-    margin-bottom: var(--spacing-xl);
+    margin-bottom: var(--spacing-lg);
     font-weight: 400;
 }
 
 .about-features {
     display: flex;
     flex-direction: column;
-    gap: var(--spacing-lg);
+    gap: var(--spacing-md);
 }
 
 .feature-item {
@@ -1011,23 +1015,29 @@ section.hero {
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: var(--spacing-md) 0;
 }
 
 .stats-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: var(--spacing-lg);
-    max-width: 300px;
+    gap: var(--spacing-md);
+    max-width: 350px;
+    width: 100%;
 }
 
 .stat-item {
     text-align: center;
-    padding: var(--spacing-lg);
-    background: rgba(255, 255, 255, 0.05);
+    padding: var(--spacing-md);
+    background: rgba(255, 255, 255, 0.08);
     backdrop-filter: blur(10px);
-    border-radius: var(--border-radius-lg);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--border-radius);
+    border: 1px solid rgba(255, 255, 255, 0.15);
     transition: all 0.3s ease;
+    min-height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .stat-item:hover {
@@ -1036,19 +1046,21 @@ section.hero {
 }
 
 .stat-number {
-    font-size: 2.5rem;
+    font-size: clamp(1.8rem, 3vw, 2.2rem);
     font-weight: 800;
     color: var(--accent-color);
     margin-bottom: var(--spacing-xs);
     font-family: var(--font-heading);
+    line-height: 1;
 }
 
 .stat-label {
-    font-size: var(--font-size-small);
-    color: rgba(255, 255, 255, 0.8);
+    font-size: var(--font-size-xs);
+    color: rgba(255, 255, 255, 0.9);
     font-weight: var(--font-weight-medium);
     text-transform: uppercase;
     letter-spacing: 0.5px;
+    line-height: 1.2;
 }
 
 /* Seção Projetos Realizados */
@@ -1697,15 +1709,26 @@ section.hero {
         justify-content: center;
     }
     
+    .about-section {
+        min-height: auto;
+        padding: var(--spacing-xl) 0;
+    }
+    
     .about-content {
         grid-template-columns: 1fr;
-        gap: var(--spacing-xl);
+        gap: var(--spacing-lg);
         text-align: center;
     }
     
     .stats-grid {
         grid-template-columns: repeat(2, 1fr);
-        max-width: 250px;
+        max-width: 300px;
+        gap: var(--spacing-sm);
+    }
+    
+    .stat-item {
+        min-height: 80px;
+        padding: var(--spacing-sm);
     }
     
     .feature-item:hover {
@@ -1757,9 +1780,34 @@ section.hero {
         padding: var(--spacing-lg);
     }
     
+    .about-section {
+        padding: var(--spacing-lg) 0;
+        min-height: auto;
+    }
+    
     .stats-grid {
-        grid-template-columns: 1fr;
-        gap: var(--spacing-sm);
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--spacing-xs);
+        max-width: 280px;
+    }
+    
+    .stat-item {
+        min-height: 70px;
+        padding: var(--spacing-xs);
+    }
+    
+    .stat-number {
+        font-size: 1.5rem;
+    }
+    
+    .about-text h2 {
+        font-size: clamp(1.8rem, 6vw, 2.5rem);
+        margin-bottom: var(--spacing-sm);
+    }
+    
+    .about-lead {
+        font-size: var(--font-size-base);
+        margin-bottom: var(--spacing-md);
     }
     
     .stat-card {
